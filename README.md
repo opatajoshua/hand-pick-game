@@ -1,7 +1,5 @@
-# hand-pick-game
-
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+# Hand Game/Juego de mano
+This is hand game app made with EmberJs application and TailwindCss.
 
 ## Prerequisites
 
@@ -17,6 +15,12 @@ You will need the following things properly installed on your computer.
 * `git clone <repository-url>` this repository
 * `cd hand-pick-game`
 * `npm install`
+
+# Config
+* You can change the default language in `app/routes/application.js` line 8. eg. 
+```js
+this.intl.setLocale(['es-es']);  //changes default lang to spanish
+```
 
 ## Running / Development
 

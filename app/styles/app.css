@@ -1,0 +1,11 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+
+.correct-border{
+    box-shadow: 1px 1px 20px 10px #24d37a91;
+}
+.wrong-border{
+    box-shadow: 1px 1px 20px 10px #fb739291;
+}

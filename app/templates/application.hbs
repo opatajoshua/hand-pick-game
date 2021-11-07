@@ -1,7 +1,77 @@
-{{page-title "HandPickGame"}}
+{{page-title (t 'app_title')}}
+<div class="bg-gray-100 h-screen w-screen" style="
+    background-image:  url('/imgs/bg_img.svg'); 
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-position-y: bottom;
+    background-size: 200px;
+    background-blend-mode: color-burn;">
+    <select class="bg-transparent" {{on "change" this.switchLang}}>
+        <option value="en-us">English</option>
+        <option value="es-es">Spanish</option>
+    </select>
+    <div class="container mx-auto max-w-2xl flex flex-col items-center">
+        <p class="text-2xl font-bold mt-12 text-gray-700">{{t 'game_title'}}</p>
+{{!-- play buttons --}}
+        <div class="flex gap-12 mt-12">
+            <HandButton
+                @click={{fn this.handClick 'left'}}
+                @state={{this.handState}}
+                @clueMode={{this.clueMode}}
+                @correct={{if (eq this.correctHand 'left') true false}}
+                @selected={{if (eq this.selectedHand 'left') true false}}
+                @foldImage="/imgs/left_fist_fold.png"
+                @openImage="/imgs/left_fist_open.png"
+            ></HandButton>
+            <HandButton
+                @click={{fn this.handClick 'right'}}
+                @state={{this.handState}}
+                @clueMode={{this.clueMode}}
+                @correct={{if (eq this.correctHand 'right') true false}}
+                @selected={{if (eq this.selectedHand 'right') true false}}
+                @foldImage="/imgs/right_fist_fold.png"
+                @openImage="/imgs/right_fist_open.png"
+            ></HandButton>
+        </div>
 
-{{!-- The following component displays Ember's default welcome message. --}}
-<WelcomePage />
-{{!-- Feel free to remove this! --}}
+{{!-- scores --}}
+        <div class="flex mt-12 items-center gap-12">
+            <div class="flex flex-col items-center">
+                <div class="bg-white h-14 w-14 flex items-center justify-center rounded-full border-2">
+                    <img class="h-6 object-contain" src="/imgs/player_icon.png" alt="player icon">
+                </div>
+                <b class="text-sm font-semibold text-gray-700 mt-2">{{t 'player_label'}}</b>
+            </div>
+            <div class="flex items-center gap-4">
+                <b class="text-4xl font-semibold animate-pulse">{{playerScore}}</b>
+                <b class="text-2xl font-semibold">:</b>
+                <b class="text-4xl font-semibold animate-pulse">{{machineScore}}</b>
+            </div>
+            <div class="flex flex-col items-center">
+                <div class="bg-white h-14 w-14 flex items-center justify-center rounded-full border-2">
+                    <img class="w-6 object-contain" src="/imgs/machine_icon.png" alt="machine icon">
+                </div>
+                <b class="text-sm font-semibold text-gray-700 mt-2">{{t 'machine_label'}}</b>
+            </div>
+        </div>
+
+{{!-- other actions --}}
+        <div class="flex items-center mt-12 gap-4">
+            <button {{on 'click' this.reset}} class="rounded-full w-40 h-12  bg-gradient-to-br from-purple-700 to-blue-500 p-1 text-purple-900 shadow-md group" type="button">
+                <div class="rounded-full bg-gray-100 h-full w-full flex items-center justify-between px-8 group-hover:bg-purple-100">
+                    {{t 'restart_label'}}
+                    <img class="h-4 object-contain transform duration-500 ease-in-out group-hover:scale-150" src="/imgs/refresh.png" alt="player icon">
+                </div>
+            </button>
+            <button {{on 'click' this.clue}} class="rounded-full w-40 h-12  bg-gradient-to-br from-purple-700 to-blue-500 p-1 text-purple-900 shadow-md group" type="button">
+                <div class="rounded-full bg-gray-100 h-full w-full flex items-center justify-between  px-8 group-hover:bg-purple-100">
+                    {{t 'clue_label'}}
+                    <img class="h-4 object-contain" src="/imgs/idea.png" alt="player icon">
+                </div>
+            </button>
+        </div>
+
+    </div>
+</div>
 
 {{outlet}}
