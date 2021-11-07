@@ -5,7 +5,7 @@ export default class HandButtonComponent extends Component {
     get imgSrc(){
         if(this.args.state=='open'){
             if(this.args.correct)
-                return '/imgS/holding_key.png';
+                return '/imgs/holding_key.png';
             else
                 return this.args.openImage;
         }
